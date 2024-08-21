@@ -1,0 +1,61 @@
+###Get the service doc
+http://localhost:4004/odata/v4/EmployeeService
+
+###Get the service doc
+http://localhost:4004/odata/v4/EmployeeService/$metadata
+
+###Get the employee entity set --1
+
+http://localhost:4004/odata/v4/EmployeeService/EmployeeSet
+###Create new employee with our payload data - POST --10
+
+POST http://localhost:4004/odata/v4/EmployeeService/EmployeeSet
+Content-Type: application/json
+
+{
+ "nameFirst": "Christiano",
+  "nameMiddle": "M",
+  "nameLast": "Ronaldo",
+  "nameInitials": null,
+  "sex": "M",
+  "language": "E",
+  "phoneNumber": "+918810504555",
+  "email": "chris.ronaldo@gmail.com",
+  "loginName": "CHRISRL",
+  "Currency_code": "EUR",
+  "salaryAmount": 2000,
+  "accountNumber": "32109876",
+  "bankId": "66665555",
+  "bankName": "My Bank of London"
+}
+
+###Update employee data -PATCH --11
+PATCH http://localhost:4004/odata/v4/EmployeeService/EmployeeSet/088483ce-5bc0-4afa-8b5e-12b676761ee9
+Content-Type: application/json
+
+{
+  "loginName": "DASH"
+}
+
+###Delete employee data - DELETE --12
+DELETE http://localhost:4004/odata/v4/EmployeeService/EmployeeSet/5d5b77be-7a40-47cc-bd28-97164cdb5b22
+
+
+###•	Get all the Employees whose name starts with ‘S’.
+
+http://localhost:4004/odata/v4/EmployeeService/EmployeeSet?$filter=contains(nameFirst,'S')
+
+###•	Get the top 2 employees, use orderby salaryAmount.
+
+http://localhost:4004/odata/v4/EmployeeService/EmployeeSet?$orderby=salaryAmount desc&$top=2
+
+
+###•	UPDATE an employee by changing the loginName.
+
+PATCH http://localhost:4004/odata/v4/EmployeeService/EmployeeSet/02635d20-af8a-4fe3-a5bb-93d3340bf298
+Content-Type: application/json
+
+{
+  "nameFirst": "Christiano",
+  "loginName" : "CHRISRL"
+}
